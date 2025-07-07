@@ -1,0 +1,187 @@
+👏 Awesome work! You're all set to dive into real coding.
+
+---
+
+## 🚀 Day 2 – Your First Django Project + REST API Basics
+
+Today’s focus:
+✅ Install Django & DRF
+✅ Build your first backend project
+✅ Create your first API endpoint (GET)
+
+---
+
+### 🧠 Concepts
+
+| Concept                         | Simple Explanation                                          |
+| ------------------------------- | ----------------------------------------------------------- |
+| **Django**                      | Python web framework for building apps quickly.             |
+| **Django REST Framework (DRF)** | Adds tools to build APIs easily in Django.                  |
+| **API**                         | A way for your frontend to talk to your backend using URLs. |
+
+---
+
+### 🔧 Step-by-Step Tasks
+
+#### 🔹 1. Create a Virtual Environment
+
+```bash
+mkdir day2-django-api
+cd day2-django-api
+
+# Create virtual env
+python -m venv env
+
+# Activate it
+# Windows:
+env\Scripts\activate
+# macOS/Linux:
+source env/bin/activate
+```
+
+---
+
+#### 🔹 2. Install Django and DRF
+
+```bash
+pip install django djangorestframework
+```
+
+---
+
+#### 🔹 3. Start a Django Project
+
+```bash
+django-admin startproject backend .
+```
+
+* Folder should look like:
+
+```
+day2-django-api/
+├── env/
+├── backend/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── ...
+├── manage.py
+```
+
+---
+
+#### 🔹 4. Run the Server
+
+```bash
+python manage.py runserver
+```
+
+🧪 Visit: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+You should see: “The install worked successfully!”
+
+---
+
+#### 🔹 5. Create a Django App
+
+```bash
+python manage.py startapp api
+```
+
+* Add `"rest_framework"` and `"api"` to `INSTALLED_APPS` in `backend/settings.py`
+
+---
+
+#### 🔹 6. Create Your First API Endpoint
+
+In `api/views.py`:
+
+
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+@api_view(['GET'])
+def hello_world(request):
+    return Response({"message": "Hello, World!"})
+```
+
+---
+
+#### 🔹 7. Set Up URL Routing
+
+Create a file: `api/urls.py`
+
+```python
+from django.urls import path
+from .views import hello_world
+
+urlpatterns = [
+    path('hello/', hello_world),
+]
+```
+
+Now connect it in `backend/urls.py`:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('api/', include('api.urls')),
+]
+```
+
+🧪 Visit: [http://127.0.0.1:8000/api/hello/](http://127.0.0.1:8000/api/hello/)
+✅ You should see:
+
+```json
+{"message": "Hello, World!"}
+```
+
+---
+
+### 🔄 GitHub Task
+
+```bash
+git add .
+git commit -m "Day 2: Setup Django project and created first API"
+git push
+```
+
+---
+
+### 🧪 Quiz
+
+1. What is the difference between Django and Django REST Framework?
+2. What does `@api_view` do?
+3. What URL will return the `"Hello, World!"` response?
+
+---
+
+### 🎯 Project Progress
+
+You've now:
+
+✅ Installed Django and DRF
+✅ Built your first working API
+✅ Learned URL routing and views
+
+---
+
+### 🤝 Collaboration Task
+
+> Create a branch `feature/api-hello`, commit your code there, and merge it back to `main` using GitHub pull request.
+
+---
+
+### 🧠 Tip of the Day
+
+Use `.env` files to store secrets like API keys and DB passwords. We’ll explore this soon!
+
+---
+
+👉 Reply with **"Day 2 Done ✅"** and your quiz answers to unlock **Day 3: Django Models & PostgreSQL Integration**!
+
+Let’s go, dev warrior! 💪
+
